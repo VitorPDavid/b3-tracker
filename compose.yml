@@ -1,0 +1,38 @@
+services:
+  backend_debug:
+    build:
+      dockerfile: ./containers/Dockerfile_debug
+    volumes:
+      - type: bind
+        source: ./b3_tracker
+        target: /b3_tracker
+      - type: bind
+        source: ./containers/docker_env
+        target: /b3_tracker/.env
+    entrypoint: /entrypoint/debug_entrypoint.sh
+    depends_on:
+      - postgres
+    ports:
+      - 8000:8000
+    networks:
+      - backend
+
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: b3tracker
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      PGDATA: /var/lib/postgresql/data
+    volumes:
+       - database:/var/lib/postgresql/data
+    ports:
+      - 8003:5432
+    networks:
+      - backend
+
+volumes:
+  database:
+
+networks:
+  backend: {}

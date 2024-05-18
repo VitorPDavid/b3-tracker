@@ -1,0 +1,7 @@
+FROM python:3.12
+
+COPY requirements/* /requirements/
+
+COPY containers/entrypoints/* /entrypoint/
+
+RUN pip3 install -r requirements/development.txt
