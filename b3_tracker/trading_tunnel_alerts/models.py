@@ -49,10 +49,9 @@ class TradingTunnel(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.RESTRICT,
     )
-    asset = models.ForeignKey(
-        Asset,
-        on_delete=models.CASCADE,
-    )
+
+    assets = models.ManyToManyField(Asset)
 
     bottom_value = models.DecimalField(max_digits=12, decimal_places=3)
     top_value = models.DecimalField(max_digits=12, decimal_places=3)
+    interval = models.IntegerField(null=False, blank=False)
