@@ -10,9 +10,8 @@ know_third_party = ["django"]
 
 [tool.pytest.ini_options]
 minversion = "6.0"
-testpaths = "django"
-pythonpaths = "django"
+pythonpath = "b3_tracker"
 python_files = "*test*.py"
 
 DJANGO_SETTINGS_MODULE = "b3_tracker.settings"
-addopts = "--cov=. --cob-brach --cov-report=xml:coverage/cov.xml"
+addopts = "--cov=. --cov-branch --cov-report=xml:coverage/cov.xml"
